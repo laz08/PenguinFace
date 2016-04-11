@@ -3,6 +3,7 @@
 //---- Fields ----
 static Window *sMainWindow;
 static TextLayer *sTimeLayer;
+static GFont sTimeFont;
 
 
 //---- Functions ----
@@ -40,10 +41,15 @@ static void loadMainWindow(Window *window){
         GRect(0, PBL_IF_ROUND_ELSE(58, 52), bounds.size.w, 50)
     );
 
+
     //Setup time layer contents
     text_layer_set_background_color(sTimeLayer, GColorClear);
     text_layer_set_text_color(sTimeLayer, GColorBlack);
-    text_layer_set_font(sTimeLayer, fonts_get_system_font(FONT_KEY_BITHAM_42_BOLD));
+
+    //Load font
+    sTimeFont = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_UBUNTU_22));
+    text_layer_set_font(sTimeLayer, sTimeFont);
+
     text_layer_set_text_alignment(sTimeLayer, GTextAlignmentCenter);
 
     //Add to the window as a child
@@ -77,6 +83,7 @@ static void init() {
 static void deinit() {
 
     window_destroy(sMainWindow);
+    fonts_unload_custom_font(sTimeFont);
 }
 
 
