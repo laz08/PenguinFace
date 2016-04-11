@@ -1,14 +1,14 @@
 {
   "uuid": "d920bbbe-d765-40f4-84fa-6bd6b8e9d910",
   "shortName": "PengFace",
-  "longName": "PengFace",
-  "companyName": "MakeAwesomeHappen",
+  "longName": "Penguin Face",
+  "companyName": "Penguin Co.",
   "versionLabel": "1.0",
   "sdkVersion": "3",
   "targetPlatforms": ["aplite", "basalt", "chalk"],
   "enableMultiJS": true,
   "watchapp": {
-    "watchface": false
+    "watchface": true
   },
   "appKeys": {
     "dummy": 0
