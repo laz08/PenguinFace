@@ -21,7 +21,7 @@ static void init() {
         .load = loadMainWindow,
         .unload = unloadMainWindow
     });
-    window_stack_push(s_mainWindow);
+    window_stack_push(s_mainWindow, true);
 }
 
 
