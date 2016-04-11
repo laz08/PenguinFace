@@ -6,6 +6,29 @@ static TextLayer *sTimeLayer;
 
 
 //---- Functions ----
+
+static void updateTime() {
+
+    time_t tempTime = time(NULL);
+    struct tm *tick_time = localtime(&tempTime);
+
+    //Static, thus making it referenced and persistent across multiple calls to
+    //updateTime function.
+    //This is to make the time to be long-lived as long as it is to be displayed.
+    static char sBuffer[8];
+    strftime(sBuffer, sizeof(sBuffer), clock_is_24h_style() ?
+                                        "%H:%M" : "%I:%M", tick_time);
+    text_layer_set_text(sTimeLayer, sBuffer);
+}
+
+static void tickHandler(struct tm *tickTime, TimeUnits unitsChanged){
+
+    updateTime();
+}
+
+
+
+//Windows
 static void loadMainWindow(Window *window){
 
     //Get window info.
@@ -20,7 +43,6 @@ static void loadMainWindow(Window *window){
     //Setup time layer contents
     text_layer_set_background_color(sTimeLayer, GColorClear);
     text_layer_set_text_color(sTimeLayer, GColorBlack);
-    text_layer_set_text(sTimeLayer, "01:23");
     text_layer_set_font(sTimeLayer, fonts_get_system_font(FONT_KEY_BITHAM_42_BOLD));
     text_layer_set_text_alignment(sTimeLayer, GTextAlignmentCenter);
 
@@ -33,6 +55,8 @@ static void unloadMainWindow(Window *window){
     text_layer_destroy(sTimeLayer);
 }
 
+
+//Init, deinit, main
 static void init() {
 
     sMainWindow = window_create();
@@ -42,6 +66,11 @@ static void init() {
         .unload = unloadMainWindow
     });
     window_stack_push(sMainWindow, true);
+
+    updateTime();
+
+    //Register with TickTimerService
+    tick_timer_service_subscribe(MINUTE_UNIT, tickHandler);
 }
 
 
