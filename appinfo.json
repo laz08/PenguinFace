@@ -14,11 +14,18 @@
     "dummy": 0
   },
   "resources": {
-    "media": [{
+    "media": [
+        {
      	 "type": "font",
          "name": "FONT_UBUNTU_22",
          "file": "fonts/Ubuntu-B.ttf",
          "compatibility": "2.7"
-        }]
+     },
+     {
+         "type": "bitmap",
+         "name": "IMAGE_TUX_BACKGROUND",
+         "file": "images/tux_bg.png"
+     }
+    ]
   }
 }

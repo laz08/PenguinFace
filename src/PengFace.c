@@ -3,7 +3,10 @@
 //---- Fields ----
 static Window *sMainWindow;
 static TextLayer *sTimeLayer;
+
 static GFont sTimeFont;
+static BitmapLayer *sBgLayer;
+static GBitmap *sBgBitmap;
 
 
 //---- Functions ----
@@ -52,13 +55,22 @@ static void loadMainWindow(Window *window){
 
     text_layer_set_text_alignment(sTimeLayer, GTextAlignmentCenter);
 
-    //Add to the window as a child
+
+    //Load background
+    sBgBitmap = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_TUX_BACKGROUND);
+    sBgLayer = bitmap_layer_create(bounds);
+
+    bitmap_layer_set_bitmap(sBgLayer, sBgBitmap);
+    layer_add_child(windowLayer, bitmap_layer_get_layer(sBgLayer));
     layer_add_child(windowLayer, text_layer_get_layer(sTimeLayer));
 }
 
 static void unloadMainWindow(Window *window){
 
     text_layer_destroy(sTimeLayer);
+    fonts_unload_custom_font(sTimeFont);
+    gbitmap_destroy(sBgBitmap);
+    bitmap_layer_destroy(sBgLayer);
 }
 
 
@@ -83,7 +95,6 @@ static void init() {
 static void deinit() {
 
     window_destroy(sMainWindow);
-    fonts_unload_custom_font(sTimeFont);
 }
 
 
