@@ -41,23 +41,23 @@ static void loadMainWindow(Window *window){
 
     //Setup time layer bounds
     sTimeLayer = text_layer_create(
-        GRect(0, PBL_IF_ROUND_ELSE(58, 52), bounds.size.w, 50)
+        GRect(0, PBL_IF_ROUND_ELSE(14, 10), bounds.size.w, 50)
     );
 
 
     //Setup time layer contents
     text_layer_set_background_color(sTimeLayer, GColorClear);
-    text_layer_set_text_color(sTimeLayer, GColorBlack);
+    text_layer_set_text_color(sTimeLayer, GColorWhite);
 
     //Load font
-    sTimeFont = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_UBUNTU_22));
+    sTimeFont = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_OBELIXPRO_22));
     text_layer_set_font(sTimeLayer, sTimeFont);
 
     text_layer_set_text_alignment(sTimeLayer, GTextAlignmentCenter);
 
 
     //Load background
-    sBgBitmap = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_TUX_BACKGROUND);
+    sBgBitmap = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_PENG_BACKGROUND);
     sBgLayer = bitmap_layer_create(bounds);
 
     bitmap_layer_set_bitmap(sBgLayer, sBgBitmap);

@@ -17,14 +17,14 @@
     "media": [
         {
      	 "type": "font",
-         "name": "FONT_UBUNTU_22",
-         "file": "fonts/Ubuntu-B.ttf",
+         "name": "FONT_OBELIXPRO_22",
+         "file": "fonts/ObelixPro-cyr.ttf",
          "compatibility": "2.7"
      },
      {
          "type": "bitmap",
-         "name": "IMAGE_TUX_BACKGROUND",
-         "file": "images/tux_bg.png"
+         "name": "IMAGE_PENG_BACKGROUND",
+         "file": "images/peng_bg.png"
      }
     ]
   }
